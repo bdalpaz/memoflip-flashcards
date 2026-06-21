@@ -1,8 +1,4 @@
-/*
-  DeckCard — cartão que representa um baralho na tela inicial.
-  Mostra nome, quantidade de cartas e botões de estudar/excluir.
-*/
-export default function DeckCard({ baralho, onEstudar, onExcluir }) {
+export default function DeckCard({ baralho, onEstudar, onEditar, onExcluir }) {
   const total = baralho.cartas.length
 
   return (
@@ -22,6 +18,9 @@ export default function DeckCard({ baralho, onEstudar, onExcluir }) {
           >
             Estudar
           </button>
+          <button className="btn btn-ghost" onClick={() => onEditar(baralho.id)}>
+            Editar
+          </button>
           <button className="btn btn-danger" onClick={() => onExcluir(baralho.id)}>
             Excluir
           </button>
@@ -39,8 +38,8 @@ export default function DeckCard({ baralho, onEstudar, onExcluir }) {
         .deck-body { padding: 20px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
         .deck-name { font-size: 19px; }
         .deck-count { color: var(--text-dim); font-size: 13px; margin-bottom: 14px; }
-        .deck-actions { display: flex; gap: 10px; margin-top: auto; }
-        .deck-actions .btn { padding: 10px 16px; font-size: 13px; }
+        .deck-actions { display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap; }
+        .deck-actions .btn { padding: 10px 14px; font-size: 13px; }
       `}</style>
     </article>
   )

@@ -1,12 +1,6 @@
 import { useState } from 'react'
 import Flashcard from '../components/Flashcard'
 
-/*
-  StudyPage — segunda tela.
-  Mostra as cartas do baralho uma a uma, com barra de progresso.
-  Para cada carta o aluno marca "Acertei" ou "Errei".
-  Ao final exibe o resultado com a pontuação.
-*/
 export default function StudyPage({ baralho, onVoltar }) {
   const [indice, setIndice] = useState(0)
   const [acertos, setAcertos] = useState(0)

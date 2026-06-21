@@ -2,10 +2,6 @@ import { useState } from 'react'
 
 const CORES = ['#2dd4bf', '#a78bfa', '#f59e0b', '#f87171', '#60a5fa', '#34d399']
 
-/*
-  NewDeckForm — formulário para criar um novo baralho.
-  Permite escolher nome e cor. Valida nome vazio.
-*/
 export default function NewDeckForm({ onCriar }) {
   const [nome, setNome] = useState('')
   const [cor, setCor] = useState(CORES[0])

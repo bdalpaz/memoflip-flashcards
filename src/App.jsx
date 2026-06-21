@@ -2,26 +2,18 @@ import { useState } from 'react'
 import { baralhosIniciais } from './data'
 import DecksPage from './pages/DecksPage'
 import StudyPage from './pages/StudyPage'
+import EditDeckPage from './pages/EditDeckPage'
 
-/*
-  App — componente raiz.
-  Controla:
-   - a lista de baralhos (estado principal)
-   - qual tela está ativa ('decks' ou 'study')
-   - qual baralho está sendo estudado
-*/
 export default function App() {
   const [baralhos, setBaralhos] = useState(baralhosIniciais)
   const [tela, setTela] = useState('decks')
   const [baralhoAtivoId, setBaralhoAtivoId] = useState(null)
 
-  // Cria um novo baralho com nome e cor escolhidos.
   function criarBaralho(nome, cor) {
     const novo = {
       id: Date.now(),
       nome,
       cor,
-      // baralho novo já vem com uma carta de exemplo para poder estudar
       cartas: [
         { id: 1, pergunta: 'Edite esta carta de exemplo.', resposta: 'Pronto, é assim que funciona!' },
       ],
@@ -34,10 +26,23 @@ export default function App() {
     setBaralhos((lista) => lista.filter((b) => b.id !== id))
   }
 
+  // Atualiza as cartas de um baralho (vindo da tela de edição).
+  function salvarCartas(id, novasCartas) {
+    setBaralhos((lista) =>
+      lista.map((b) => (b.id === id ? { ...b, cartas: novasCartas } : b))
+    )
+  }
+
   // Abre o modo de estudo de um baralho.
   function estudar(id) {
     setBaralhoAtivoId(id)
     setTela('study')
+  }
+
+  // Abre a tela de edição de um baralho.
+  function editar(id) {
+    setBaralhoAtivoId(id)
+    setTela('edit')
   }
 
   function voltarParaDecks() {
@@ -57,7 +62,7 @@ export default function App() {
             <div className="brand-tag">flashcards para fixar o que importa</div>
           </div>
         </div>
-        {tela === 'study' && (
+        {tela !== 'decks' && (
           <button className="nav-btn" onClick={voltarParaDecks}>← Baralhos</button>
         )}
       </header>
@@ -69,11 +74,20 @@ export default function App() {
             onCriar={criarBaralho}
             onExcluir={excluirBaralho}
             onEstudar={estudar}
+            onEditar={editar}
           />
         )}
 
         {tela === 'study' && baralhoAtivo && (
           <StudyPage baralho={baralhoAtivo} onVoltar={voltarParaDecks} />
+        )}
+
+        {tela === 'edit' && baralhoAtivo && (
+          <EditDeckPage
+            baralho={baralhoAtivo}
+            onSalvarCartas={salvarCartas}
+            onVoltar={voltarParaDecks}
+          />
         )}
       </main>
     </div>

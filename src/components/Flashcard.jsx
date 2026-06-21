@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react'
 
-/*
-  Flashcard — carta que vira ao ser clicada.
-  A animação 3D é feita por CSS (transform: rotateY).
-  Recebe pergunta, resposta e a cor do baralho.
-*/
 export default function Flashcard({ pergunta, resposta, cor }) {
   const [virada, setVirada] = useState(false)
 
-  // Sempre que a pergunta mudar (próxima carta), volta para a frente.
   useEffect(() => {
     setVirada(false)
   }, [pergunta])

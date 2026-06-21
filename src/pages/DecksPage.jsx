@@ -1,11 +1,7 @@
 import DeckCard from '../components/DeckCard'
 import NewDeckForm from '../components/NewDeckForm'
 
-/*
-  DecksPage — primeira tela.
-  Lista todos os baralhos e permite criar/excluir.
-*/
-export default function DecksPage({ baralhos, onCriar, onExcluir, onEstudar }) {
+export default function DecksPage({ baralhos, onCriar, onExcluir, onEstudar, onEditar }) {
   return (
     <section>
       <div className="section-head">
@@ -29,6 +25,7 @@ export default function DecksPage({ baralhos, onCriar, onExcluir, onEstudar }) {
               baralho={b}
               onEstudar={onEstudar}
               onExcluir={onExcluir}
+              onEditar={onEditar}
             />
           ))}
         </div>
