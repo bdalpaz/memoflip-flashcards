@@ -1,0 +1,167 @@
+/* ===========================================================
+   MemoFlip — estilos globais
+   Paleta: fundo grafite profundo, acento teal/violeta,
+   tipografia Space Grotesk (display) + Inter (corpo).
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0d1117;
+  --bg-soft: #161b22;
+  --surface: #1c2330;
+  --surface-2: #232b3a;
+  --border: #2c3545;
+  --text: #e7ecf3;
+  --text-dim: #94a3b8;
+  --teal: #2dd4bf;
+  --violet: #a78bfa;
+  --amber: #f59e0b;
+  --danger: #f87171;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: radial-gradient(1100px 600px at 80% -10%, rgba(45, 212, 191, 0.08), transparent 60%),
+              radial-gradient(900px 500px at 0% 110%, rgba(167, 139, 250, 0.08), transparent 55%),
+              var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.01em; }
+
+button { font-family: inherit; cursor: pointer; border: none; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+.app { max-width: 980px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ---------- Cabeçalho ---------- */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 26px 0 22px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: linear-gradient(140deg, var(--teal), var(--violet));
+  display: grid; place-items: center; font-family: 'Space Grotesk';
+  font-weight: 700; font-size: 22px; color: #06121a; box-shadow: var(--shadow);
+}
+.brand-name { font-size: 22px; font-weight: 700; }
+.brand-name span { color: var(--teal); }
+.brand-tag { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+.nav-btn {
+  background: var(--surface); color: var(--text-dim);
+  border: 1px solid var(--border); padding: 9px 16px; border-radius: 999px;
+  font-size: 14px; font-weight: 500; transition: 0.18s;
+}
+.nav-btn:hover { color: var(--text); border-color: var(--teal); }
+
+/* ---------- Cabeçalho de seção ---------- */
+.section-head { margin: 18px 0 24px; }
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); font-weight: 600;
+}
+.section-head h2 { font-size: 30px; margin-top: 6px; }
+.section-head p { color: var(--text-dim); margin-top: 6px; font-size: 15px; }
+
+/* ---------- Grid de baralhos ---------- */
+.deck-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+/* ---------- Formulário novo baralho ---------- */
+.new-deck {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; margin-bottom: 26px;
+}
+.new-deck h3 { font-size: 17px; margin-bottom: 14px; }
+.form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.input {
+  background: var(--bg-soft); border: 1px solid var(--border); color: var(--text);
+  padding: 12px 14px; border-radius: 12px; font-size: 14px; flex: 1; min-width: 180px;
+}
+.input::placeholder { color: #64748b; }
+.color-pick { display: flex; gap: 8px; align-items: center; }
+.swatch {
+  width: 30px; height: 30px; border-radius: 9px; cursor: pointer;
+  border: 2px solid transparent; transition: 0.15s;
+}
+.swatch.active { border-color: var(--text); transform: scale(1.12); }
+
+.btn {
+  background: linear-gradient(135deg, var(--teal), #14b8a6); color: #06121a;
+  padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 14px;
+  transition: 0.18s;
+}
+.btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; border: 1px solid var(--border); color: var(--text-dim);
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--text-dim); }
+.btn-danger { background: transparent; color: var(--danger); border: 1px solid #5b2730; }
+.btn-danger:hover { background: rgba(248, 113, 113, 0.12); }
+
+/* ---------- Estado vazio ---------- */
+.empty {
+  text-align: center; padding: 60px 20px; color: var(--text-dim);
+  border: 1px dashed var(--border); border-radius: var(--radius);
+}
+.empty-emoji { font-size: 40px; margin-bottom: 10px; }
+
+/* ---------- Estudo ---------- */
+.study-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 22px; gap: 12px; flex-wrap: wrap;
+}
+.progress-wrap { flex: 1; min-width: 200px; }
+.progress-track {
+  height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--teal), var(--violet));
+  transition: width 0.35s ease;
+}
+.progress-label { font-size: 13px; color: var(--text-dim); margin-top: 8px; }
+
+.study-stage { display: grid; place-items: center; padding: 10px 0 26px; }
+
+/* botões de avaliação */
+.rate-row { display: flex; gap: 14px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+.rate-btn {
+  padding: 14px 26px; border-radius: 14px; font-weight: 600; font-size: 15px;
+  border: 1px solid var(--border); transition: 0.18s; min-width: 150px;
+}
+.rate-hit { background: rgba(45, 212, 191, 0.12); color: var(--teal); border-color: #1f6b62; }
+.rate-hit:hover { background: rgba(45, 212, 191, 0.22); }
+.rate-miss { background: rgba(248, 113, 113, 0.1); color: var(--danger); border-color: #5b2730; }
+.rate-miss:hover { background: rgba(248, 113, 113, 0.2); }
+.hint { color: var(--text-dim); font-size: 14px; margin-top: 18px; text-align: center; }
+
+/* resultado final */
+.result {
+  text-align: center; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 44px 24px; box-shadow: var(--shadow);
+}
+.result .big { font-size: 56px; font-family: 'Space Grotesk'; font-weight: 700; }
+.score-pills { display: flex; gap: 14px; justify-content: center; margin: 22px 0 28px; flex-wrap: wrap; }
+.pill {
+  padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600;
+  border: 1px solid var(--border); background: var(--bg-soft);
+}
+.pill.hit { color: var(--teal); }
+.pill.miss { color: var(--danger); }
+
+@media (max-width: 560px) {
+  .section-head h2 { font-size: 24px; }
+  .result .big { font-size: 44px; }
+}
